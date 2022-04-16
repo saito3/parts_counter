@@ -17,21 +17,25 @@ def process(img, size, bias):
   return bw
 
 class VideoProcessor:
-  def __init__(self) -> None:
-    self.size = 51
-    self.bias = 15
-    
-  def recv(self, frame):
-    img = frame.to_ndarray(format="bgr24")
-    img = process(img, self.size, self.bias)
-    return av.VideoFrame.from_ndarray(img, format="bgr24")
+    def __init__(self) -> None:
+        self.size = 100
+        self.bias = 200
+
+    def recv(self, frame):
+        img = frame.to_ndarray(format="bgr24")
+
+        img = process(img, self.size, self.bias)
+        img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+
+        return av.VideoFrame.from_ndarray(img, format="bgr24")
+
 
 ctx = webrtc_streamer(
-  key="example",
-  video_processor_factory=VideoProcessor,
-  rtc_configuration={
-    "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
-  }
+    key="example",
+    video_processor_factory=VideoProcessor,
+    rtc_configuration={
+        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+    }
 )
 if ctx.video_processor:
   ctx.video_processor.size = st.slider(
