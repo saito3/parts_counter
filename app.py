@@ -46,7 +46,7 @@ def process(img, size, bias):
     cv2.putText(img, "#{}".format(count), (int(x) - 10, int(y)),
 	  cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
   
-  cv2.putText(img, "Total count: {}".format(count), (30, 30) ),
+  cv2.putText(img, "Total count: {}".format(count), (30, 30),
     cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255), 2)
   
   return img
