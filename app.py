@@ -16,8 +16,6 @@ def process(img):
     cv2.drawContours(bw, [cnt], 0, 255, -1)
   return bw
 
-thresh = fillholes(thresh)
-
 class VideoProcessor:
   def __init__(self) -> None:
     self.size = 51
