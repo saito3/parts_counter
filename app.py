@@ -5,11 +5,11 @@ import cv2
 
 st.title("Parts counter")
 
-def process(img):
+def process(img, size, bias):
   # binarize
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
   bw = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C,
-                                 cv2.THRESH_BINARY_INV, 51, 15)
+                                 cv2.THRESH_BINARY_INV, size, bias)
   # fill holes
   contour, hier = cv2.findContours(bw, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
   for cnt in contour:
