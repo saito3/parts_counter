@@ -48,12 +48,6 @@ def process(img, size, bias):
   
   return img
 
-markers = ndimage.label(localMax, structure=np.ones((3, 3)))[0]
-labels = watershed(-D, markers, mask=thresh)
-print("[INFO] {} unique segments found".format(len(np.unique(labels)) - 1))
-
-cv2_imshow(-D/100)
-
 class VideoProcessor:
   def __init__(self) -> None:
     self.size = 100
