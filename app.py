@@ -3,7 +3,9 @@ from streamlit_webrtc import webrtc_streamer
 import av
 import cv2
 
-st.title("Parts counter")
+st.title("My first Streamlit app")
+st.write("Hello, world")
+
 
 def process(img, size, bias):
   # binarize
@@ -18,13 +20,13 @@ def process(img, size, bias):
 
 class VideoProcessor:
     def __init__(self) -> None:
-        self.size = 100
-        self.bias = 200
+        self.threshold1 = 100
+        self.threshold2 = 200
 
     def recv(self, frame):
         img = frame.to_ndarray(format="bgr24")
 
-        img = process(img, self.size, self.bias)
+        img = process(img, self.threshold1, self.threshold2)
         img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
 
         return av.VideoFrame.from_ndarray(img, format="bgr24")
@@ -38,7 +40,5 @@ ctx = webrtc_streamer(
     }
 )
 if ctx.video_processor:
-  ctx.video_processor.size = st.slider(
-    "Size", min_value=81, max_value=21, step=2, value=51)
-  ctx.video_processor.bias = st.slider(
-    "Bias", min_value=0, max_value=30, step=1, value=15)
+    ctx.video_processor.threshold1 = st.slider("Threshold1", min_value=1, max_value=101, step=2, value=51)
+    ctx.video_processor.threshold2 = st.slider("Threshold2", min_value=0, max_value=1000, step=1, value=15)
