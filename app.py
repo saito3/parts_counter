@@ -46,6 +46,9 @@ def process(img, size, bias):
     cv2.putText(img, "#{}".format(count), (int(x) - 10, int(y)),
 	  cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
   
+  cv2.putText(img, "Total count: {}".format(count), (30, 30) ),
+    cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255), 2)
+  
   return img
 
 class VideoProcessor:
@@ -68,6 +71,8 @@ ctx = webrtc_streamer(
 )
 if ctx.video_processor:
   ctx.video_processor.size = st.slider(
-    "Size", min_value=81, max_value=21, step=2, value=51)
+    "Size", min_value=21, max_value=101, step=2, value=51)
+  ctx.video_processor.bias = st.slider(
+    "Bias", min_value=0, max_value=30, step=1, value=15)
   ctx.video_processor.bias = st.slider(
     "Bias", min_value=0, max_value=30, step=1, value=15)
