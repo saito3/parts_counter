@@ -64,7 +64,7 @@ ctx = webrtc_streamer(
     key="video-sendonly",
     video_processor_factory=VideoProcessor,
     media_stream_constraints={
-        "video": {"frameRate": {"ideal": frame_rate}},
+        "video": {"frameRate": {"ideal": 2}},
     },
     video_html_attrs={
         "style": {"width": "100%", "margin": "0 auto", "border": "5px yellow solid"},
