@@ -62,7 +62,6 @@ class VideoProcessor:
 
 ctx = webrtc_streamer(
     key="video-sendonly",
-    mode=WebRtcMode.SENDONLY,
     media_stream_constraints={"video": True},
     video_processor_factory=VideoProcessor,
     rtc_configuration={
