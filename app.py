@@ -62,7 +62,6 @@ class VideoProcessor:
 
 ctx = webrtc_streamer(
     key="video-sendonly",
-    media_stream_constraints={"video": True},
     video_processor_factory=VideoProcessor,
     media_stream_constraints={
         "video": {"frameRate": {"ideal": frame_rate}},
