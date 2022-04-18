@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import webrtc_streamer, WebRtcMode
 import av
 import cv2
 import numpy as np
@@ -8,9 +8,7 @@ from skimage.morphology import watershed
 from scipy import ndimage
 import imutils
 
-st.title("My first Streamlit app")
-st.write("Hello, world")
-
+st.title("Parts counter")
 
 def process(img, size, bias):
   # binarize
@@ -74,7 +72,5 @@ ctx = webrtc_streamer(
 if ctx.video_processor:
   ctx.video_processor.size = st.slider(
     "Size", min_value=21, max_value=101, step=2, value=51)
-  ctx.video_processor.bias = st.slider(
-    "Bias", min_value=0, max_value=30, step=1, value=15)
   ctx.video_processor.bias = st.slider(
     "Bias", min_value=0, max_value=30, step=1, value=15)
