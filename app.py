@@ -64,6 +64,14 @@ ctx = webrtc_streamer(
     key="video-sendonly",
     media_stream_constraints={"video": True},
     video_processor_factory=VideoProcessor,
+    media_stream_constraints={
+        "video": {"frameRate": {"ideal": frame_rate}},
+    },
+    video_html_attrs={
+        "style": {"width": "100%", "margin": "0 auto", "border": "5px yellow solid"},
+        "controls": False,
+        "autoPlay": True,
+    },
     rtc_configuration={
         "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
     }
